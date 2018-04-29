@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery作业2</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/ui.css">
+	<!-- <link rel="stylesheet" href="css/font/iconfont.css"> -->
+	<script type="text/javascript" src="jQuery/jquery/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="jQuery/jQuery.js"></script>
+	
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header" id="header">
+		<div class="wrap claerfix">
+			<div class="top" id="top">
+				<div class="top-left">
+					<a id="loginLink" href="#" style="color: #E53935">亲，请登录</a>
+					<a id="regeLink" href="#">免费注册</a>
+					<a id="phonetb" href="#">手机逛淘宝</a>
+				</div>
+				<div class="top-right">
+					<div class="right">
+						<p>我的淘宝</p>
+						<img src="img/icon/21.png" alt="">
+						<ul>
+							<li>已买到的宝贝</li>
+							<li>我的足迹</li>
+						</ul>
+					</div>
+					<div class="right">
+						<p>收藏夹</p>
+						<img src="img/icon/21.png" alt="">
+						<ul>
+							<li>收藏的宝贝</li>
+							<li>收藏的店铺</li>
+						</ul>
+					</div>
+					<div class="right">
+						<p>商品分类</p>
+					</div>
+					<div class="right">
+						<p>卖家中心</p>
+						<img src="img/icon/21.png" alt="">
+						<ul>
+							<li>免费开卖</li>
+							<li>已卖出的宝贝</li>
+							<li>售出中的宝贝</li>
+							<li>卖家培训中心</li>
+							<li>体验中心</li>
+						</ul>
+					</div>
+					<div class="right">
+						<p>联系客服</p>
+						<img src="img/icon/21.png" alt="">
+						<ul>
+							<li>消费者客服</li>
+							<li>卖家客服</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="top-mid">
+				<div class="logo"><img src="img/logo.png" alt=""></div>
+				<div class="search ui-search">
+					<div class="ui-search-selected">淘宝</div>
+					<img src="img/icon/23.png" alt="">
+					<div class="ui-search-select-list">
+						<a href="#1">淘宝</a>
+						<a href="#1">天猫</a>
+						<a href="#1">闲鱼</a>
+						<a href="#1">海外</a>
+					</div>
+					<input type="text" name="search-content" class="ui-search-input" placeholder="请输入搜索内容">
+					<p class="ui-search-submit">搜索</p>
+				</div>
+				<div class="shopcart ui-shopcart">
+					<img src="img/icon/26.png" alt="">
+					<p>购物车&nbsp;&nbsp;|&nbsp;&nbsp;0</p>
+					<img src="img/icon/23.png" alt="">
+					<div class="ui-shopcart-list">
+						<div class="shopcart-wrap">
+							<div class="shopcart-title">最新加入的商品</div>
+							<div class="shopcart-item">
+								<a href="">
+									<img src="img/cart/1.png" alt="">
+									adidas训练 男子<br>
+									￥335 x 1
+								</a>
+							</div>
+							<div class="shopcart-item">
+								<a href="">
+									<img src="img/cart/2.png" alt="">
+									化妆品<br>
+									￥918 x 1
+								</a>
+							</div>
+							<div class="shopcart-item">
+								<a href="">
+									<img src="img/cart/3.png" alt="">
+									iphone6S 玫瑰金<br>
+									￥832 x 1
+								</a>
+							</div>
+							<div class="shopcart-item">
+								<a href="">
+									<img src="img/cart/4.png" alt="">
+									绞肉机<br>
+									￥321 x 1
+								</a>
+							</div>
+							<div class="shopcart-item">
+								<a href="">
+									<img src="img/cart/5.png" alt="">
+									方向盘<br>
+									￥1985 x 1
+								</a>
+							</div>
+							<div class="shopcart-item">
+								<a href="">
+									<img src="img/cart/book.jpg" alt="">
+									莫名其妙的课本<br>
+									￥2335 x 1
+								</a>
+							</div>
+							<div class="shopcart-checkout">
+								<a href="#1">共27件商品，总计￥2700</a>
+								<input type="button" class="button" value="去购物车">
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 弹出层遮罩 -->
+	<div class="layer-mask" id="layer-mask"></div>
+	<!-- 弹出层窗体 -->
+	<div class="layer-pop" id="layer-pop">
+		<!-- 弹出层关闭按钮 -->
+		<div class="layer-close" id="layer-close">×</div>
+		<!-- 弹出层内容区域 -->
+		<div class="layer-content" id="layer-content">
+		</div>
+	</div>
+
+	<!-- 登录窗结构 -->
+	<div class="loginHtml" id="loginHtml">
+		<!-- 登录窗体 -->
+		<div class="login">
+			<h4 class="title-login title-focus">登 录</h4>
+			<h4 class="title-rege">注 册</h4>
+			<div class="login-item">
+				<input id="username" class="input" name="username" type="text" placeholder="请输入登录邮箱/手机号" />
+				<p class="error-msg-username">请输入正确的手机号或邮箱地址</p>
+			</div>
+			<div class="login-item">
+				<input id="password" class="input" name="password" type="password" placeholder="6-16位密码，区分大小写，不能包含空格" />
+				<p class="error-msg-password">请输入6-16位密码，区分大小写，不能用空格</p>
+			</div>
+			<div class="auto-login">
+				<input type="checkbox" name="auto" value="login" checked>
+				<p>下次自动登录</p>
+				<p class="two">忘记密码</p>
+			</div>
+			<div class="login-item">
+				<input id="loginSubmitBtn" type="submit" class="submit" value="登录"/>
+			</div>
+			<div class="login-link">
+				<img src="img/icon/QQ.png" alt="">
+				<img src="img/icon/weixin.png" alt="">
+				<img src="img/icon/xinlang.png" alt="">
+			</div>
+		</div>
+	</div>
+	
+	<!-- 注册窗结构 -->
+	<div class="regeHtml" id="regeHtml">
+		<!-- 注册窗体 -->
+		<div class="login">
+			<h4 class="title-login">登 录</h4>
+			<h4 class="title-rege title-focus">注 册</h4>
+			<div class="login-item">
+				<input id="username" class="input" name="username" type="text" placeholder="请输入注册邮箱/手机号" />
+				<p class="error-msg-username">请输入正确的手机号或邮箱地址</p>
+			</div>
+			<div class="login-item">
+				<input id="input-code" type="text" name="code" class="code" placeholder="请输入验证码，验证码区分大小写" /><div class="verify"></div>
+				<p class="error-msg-code">验证码输入错误，验证码区分大小写，请重新输入</p>
+			</div>
+			<div class="login-item">
+				<input id="regeSubmitBtn" type="submit" class="submit" value="注册"/>
+			</div>
+			<div class="login-link">
+				<img src="img/icon/QQ.png" alt="">
+				<img src="img/icon/weixin.png" alt="">
+				<img src="img/icon/xinlang.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<!-- 导航区 -->
+	<div class="nav" id="nav">
+		<div class="wrap">
+			<div class="nav-link-left menu">
+				<img src="img/icon/18.png">
+				<a href="#" class="nav-link-left-title">商品分类</a>
+				<div class="menu-list ui-menu">
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">家用电器</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									电器
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">手机</a>
+									<a href="#1">对讲机</a>
+									<a href="#1">手机维修</a>
+									<a href="#1">上门服务</a>
+									<a href="#1">充话费</a>
+									<a href="#1">手机贴膜</a>
+									<a href="#1">存储卡</a>
+									<a href="#1">数据线</a>
+									<a href="#1">手机壳</a>
+									<a href="#1">手机耳机</a>
+									<a href="#1">手机配件</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">手机支架</a>
+									<a href="#1">蓝牙耳机</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">拍照配件</a>
+									<a href="#1">蓝牙耳机</a>
+								</div>
+							</div>
+
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									冰箱
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">手机</a>
+									<a href="#1">对讲机</a>
+									<a href="#1">手机维修</a>
+									<a href="#1">上门服务</a>
+									<a href="#1">充话费</a>
+									<a href="#1">手机贴膜</a>
+									<a href="#1">存储卡</a>
+									<a href="#1">数据线</a>
+									<a href="#1">手机壳</a>
+									<a href="#1">手机耳机</a>
+									<a href="#1">手机配件</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">手机支架</a>
+									<a href="#1">蓝牙耳机</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">拍照配件</a>
+									<a href="#1">蓝牙耳机</a>
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									显示器
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">点读机</a>
+									<a href="#1">苹果周边</a>
+									<a href="#1">苹果显示器</a>
+									<a href="#1">LG显示器</a>
+									<a href="#1">华为显示器</a>
+									<a href="#1">小米显示器</a>
+									<a href="#1">闪光灯显示器</a>
+									<a href="#1">显示器清洁</a>
+									<a href="#1">显示器包</a>
+									<a href="#1">显示器检测</a>
+									<a href="#1">显示器维修</a>
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									电脑
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">电子书</a>
+									<a href="#1">数码相机</a>
+									<a href="#1">微单</a>
+									<a href="#1">单反</a>
+									<a href="#1">拍立得</a>
+									<a href="#1">运动相机</a>
+									<a href="#1">摄像机</a>
+									<a href="#1">录像机</a>
+									<a href="#1">镜头</a>
+									<a href="#1">户外器材</a>
+									<a href="#1">摄影器材</a>
+									<a href="#1">冲印照片</a>
+									<a href="#1">数码相框</a>
+									<a href="#1">存储卡</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">手机数码</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">手机</a>
+									<a href="#1">对讲机</a>
+									<a href="#1">手机维修</a>
+									<a href="#1">上门服务</a>
+									<a href="#1">充话费</a>
+									<a href="#1">手机贴膜</a>
+									<a href="#1">存储卡</a>
+									<a href="#1">数据线</a>
+									<a href="#1">手机壳</a>
+									<a href="#1">手机耳机</a>
+									<a href="#1">手机配件</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">手机支架</a>
+									<a href="#1">蓝牙耳机</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">拍照配件</a>
+									<a href="#1">蓝牙耳机</a>
+								</div>
+							</div>
+
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									显示器
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">点读机</a>
+									<a href="#1">苹果周边</a>
+									<a href="#1">苹果显示器</a>
+									<a href="#1">LG显示器</a>
+									<a href="#1">华为显示器</a>
+									<a href="#1">小米显示器</a>
+									<a href="#1">闪光灯显示器</a>
+									<a href="#1">显示器清洁</a>
+									<a href="#1">显示器包</a>
+									<a href="#1">显示器检测</a>
+									<a href="#1">显示器维修</a>
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									电脑
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">电子书</a>
+									<a href="#1">数码相机</a>
+									<a href="#1">微单</a>
+									<a href="#1">单反</a>
+									<a href="#1">拍立得</a>
+									<a href="#1">运动相机</a>
+									<a href="#1">摄像机</a>
+									<a href="#1">录像机</a>
+									<a href="#1">镜头</a>
+									<a href="#1">户外器材</a>
+									<a href="#1">摄影器材</a>
+									<a href="#1">冲印照片</a>
+									<a href="#1">数码相框</a>
+									<a href="#1">存储卡</a>
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">耳麦/耳机</a>
+									<a href="#1">音响</a>
+									<a href="#1">车载音响</a>
+									<a href="#1">无线音响</a>
+									<a href="#1">收音机</a>
+									<a href="#1">麦克风</a>
+									<a href="#1">MP3/MP4</a>
+									<a href="#1">专业设备</a>
+									<a href="#1">智能手环</a>
+									<a href="#1">智能机器人</a>
+									<a href="#1">智能眼镜</a>
+									<a href="#1">闪光灯</a>
+									<a href="#1">游戏手柄</a>
+									<a href="#1">学生平板</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">电脑办公</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">手机</a>
+									<a href="#1">对讲机</a>
+									<a href="#1">手机维修</a>
+									<a href="#1">上门服务</a>
+									<a href="#1">充话费</a>
+									<a href="#1">手机贴膜</a>
+									<a href="#1">存储卡</a>
+									<a href="#1">数据线</a>
+									<a href="#1">手机壳</a>
+									<a href="#1">手机耳机</a>
+									<a href="#1">手机配件</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">手机支架</a>
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">耳麦/耳机</a>
+									<a href="#1">音响</a>
+									<a href="#1">车载音响</a>
+									<a href="#1">无线音响</a>
+									<a href="#1">收音机</a>
+									<a href="#1">麦克风</a>
+									<a href="#1">MP3/MP4</a>
+									<a href="#1">专业设备</a>
+									<a href="#1">智能手环</a>
+									<a href="#1">智能机器人</a>
+									<a href="#1">智能眼镜</a>
+									<a href="#1">闪光灯</a>
+									<a href="#1">游戏手柄</a>
+									<a href="#1">学生平板</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">家具装修</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">手机</a>
+									<a href="#1">对讲机</a>
+									<a href="#1">手机维修</a>
+									<a href="#1">上门服务</a>
+									<a href="#1">充话费</a>
+									<a href="#1">手机贴膜</a>
+									<a href="#1">存储卡</a>
+									<a href="#1">数据线</a>
+									<a href="#1">手机壳</a>
+									<a href="#1">手机耳机</a>
+									<a href="#1">手机配件</a>
+									<a href="#1">移动电源</a>
+									<a href="#1">手机支架</a>
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+								<div class="ui-menu-item-detail-group-list">
+									<a href="#1">耳麦/耳机</a>
+									<a href="#1">音响</a>
+									<a href="#1">车载音响</a>
+									<a href="#1">无线音响</a>
+									<a href="#1">收音机</a>
+									<a href="#1">麦克风</a>
+									<a href="#1">MP3/MP4</a>
+									<a href="#1">专业设备</a>
+									<a href="#1">智能手环</a>
+									<a href="#1">智能机器人</a>
+									<a href="#1">智能眼镜</a>
+									<a href="#1">闪光灯</a>
+									<a href="#1">游戏手柄</a>
+									<a href="#1">学生平板</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+		
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">男装 · 女装 · 童装</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">化妆 · 清洁 · 宠物</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">运动户外 · 钟表</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">汽车 · 汽车用品 · 维修</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">母婴 · 玩具</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">食品 · 酒类 · 生鲜</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">医药保健</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">图书 · 电子书</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">彩票 · 旅行 · 充值</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-menu-item">
+						<a href="#1" class="ui-menu-item-department">理财 · 众筹 · 白条</a>
+						<a href="#1" class="ui-menu-item-right">></a>
+						<div class="ui-menu-item-detail">
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									手机
+								</div>
+							</div>
+							<div class="ui-menu-item-detail-group">
+								<div class="ui-menu-item-detail-group-caption">
+									微波炉
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<a href="#" class="nav-link">数码城</a>
+			<a href="#" class="nav-link">天猫</a>
+			<a href="#" class="nav-link">团购</a>
+			<a href="#" class="nav-link">发现</a>
+			<a href="#" class="nav-link">二手特价</a>
+			<a href="#" class="nav-link">名品汇</a>
+		</div>
+	</div>
+
+	<!-- banner -->
+	<div class="banner" id="banner">
+		<div class="banner-slider ui-slider">
+
+			<div class="ui-slider-wrap">
+				<a href="#0" class="item"><img src="img/focus-carousel/1.jpg" alt="banner-1"></a>
+				<a href="#1" class="item"><img src="img/focus-carousel/2.jpg" alt="banner-1"></a>
+				<a href="#2" class="item"><img src="img/focus-carousel/3.jpg" alt="banner-1"></a>
+				<a href="#3" class="item"><img src="img/focus-carousel/4.jpg" alt="banner-1"></a>
+				<a href="#4" class="item"><img src="img/focus-carousel/5.jpg" alt="banner-1"></a>
+				<a href="#5" class="item"><img src="img/focus-carousel/6.jpg" alt="banner-1"></a>
+			</div>
+
+			<div class="ui-slider-arrow">
+				<a href="#l" class="item left">&nbsp;</a>
+				<a href="#r" class="item right">&nbsp;</a>
+			</div>
+			
+			<div class="ui-slider-process">
+				<a href="#0" class="item item_focus">&nbsp;</a>
+				<a href="#1" class="item ">&nbsp;</a>
+				<a href="#2" class="item ">&nbsp;</a>
+				<a href="#3" class="item ">&nbsp;</a>
+				<a href="#4" class="item ">&nbsp;</a>
+				<a href="#5" class="item ">&nbsp;</a>
+			</div>
+
+		</div>
+		<div class="banner-news">
+			<h3>淘宝快报</h3>
+			<p>更多></p>
+			<p>【特惠】精选图书满150减50</p>
+			<p>【公告】广州图书仓搬仓引起配送延迟</p>
+			<p>【特惠】爆款手机12期免息 抽奖赢电视</p>
+			<p>【公告】广东，福建受台风影响配送延迟</p>
+			<p>【特惠】大闸蟹领券满399减199</p>
+		</div>
+		<div class="banner-other">
+			<div class="other"><div class="other-item"><img src="img/icon/1.png" alt=""><p>话费</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/2.png" alt=""><p>机票</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/3.png" alt=""><p>电影票</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/4.png" alt=""><p>游戏</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/5.png" alt=""><p>彩票</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/6.png" alt=""><p>加油卡</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/7.png" alt=""><p>酒店</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/8.png" alt=""><p>火车票</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/9.png" alt=""><p>众筹</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/10.png" alt=""><p>理财</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/11.png" alt=""><p>礼品卡</p></div></div>
+			<div class="other"><div class="other-item"><img src="img/icon/12.png" alt=""><p>白条</p></div></div>
+			<div class="other-bottom"><img src="img/ad.png" alt=""></div>
+		</div>
+	</div>
+
+	<!-- main -->
+	<div class="main" id="main">
+		<div class="wrap claerfix">
+			<div class="ui-floor-change">
+				<div class="floor-change-item">
+					<a href="#1F" class="item-show first-show">1F</a>
+					<a href="#1F" class="item-hide first-hide">服装</a>
+				</div>
+				<div class="floor-change-item">
+					<a href="#2F" class="item-show second-show">2F</a>
+					<a href="#2F" class="item-hide second-hide">美妆</a>
+				</div>
+				<div class="floor-change-item">
+					<a href="#3F" class="item-show third-show">3F</a>
+					<a href="#3F" class="item-hide third-hide">手机</a>
+				</div>
+				<div class="floor-change-item">
+					<a href="#4F" class="item-show fourth-show">4F</a>
+					<a href="#4F" class="item-hide fourth-hide">电器</a>
+				</div>
+				<div class="floor-change-item">
+					<a href="#5F" class="item-show fifth-show">5F</a>
+					<a href="#5F" class="item-hide fifth-hide">电脑</a>
+				</div>
+			</div>
+			<div class="content1">
+				<div class="caption-left">
+					<div class="floor">1F</div><a href="" name="1F"></a>
+					<a href="#1" class="left-item">服装鞋包</a>
+				</div>
+				<div class="caption-right">
+					<div class="caption-right-tab"><a href="#2" class="right-item">热门</a><div class="triangle triangle-top" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">大牌</a><div class=" triangle" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">名品</a><div class=" triangle" ></div></div>
+				</div>
+
+				<div class="block">
+					<div class="block-item">
+						<div class="sale"><img src="img/floor/1.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/2.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/2.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/3.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/3.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+					</div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/6.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/4.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+				</div>
+			</div>
+
+			<div class="content2">
+				<div class="caption-left">
+					<div class="floor">2F</div><a href="" name="2F"></a>
+					<a href="#1" class="left-item">个护美妆</a>
+				</div>
+				<div class="caption-right">
+					<div class="caption-right-tab"><a href="#2" class="right-item">热门</a><div class="triangle triangle-top" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">大牌</a><div class=" triangle" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">名品</a><div class=" triangle" ></div></div>
+				</div>
+
+				<div class="block">
+					<div class="block-item">
+						<div class="sale"><img src="img/floor/5.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/5.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/5.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/5.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/5.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/5.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/1.png" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+					</div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/6.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/4.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+				</div>
+			</div>
+
+			<div class="content3">
+				<div class="caption-left"><a href="" name="3F"></a>
+					<div class="floor">3F</div>
+					<a href="#1" class="left-item">手机通讯</a>
+				</div>
+				<div class="caption-right">
+					<div class="caption-right-tab"><a href="#2" class="right-item">热门</a><div class="triangle triangle-top" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">大牌</a><div class=" triangle" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">名品</a><div class=" triangle" ></div></div>
+				</div>
+
+				<div class="block">
+					<div class="block-item">
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+					</div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/7.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+				</div>
+			</div>
+
+			<div class="content4">
+				<div class="caption-left"><a href="" name="4F"></a>
+					<div class="floor">4F</div>
+					<a href="#1" class="left-item">家用电器</a>
+				</div>
+				<div class="caption-right">
+					<div class="caption-right-tab"><a href="#2" class="right-item">热门</a><div class="triangle triangle-top" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">大牌</a><div class=" triangle" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">名品</a><div class=" triangle" ></div></div>
+				</div>
+
+				<div class="block">
+					<div class="block-item">
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/8.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+					</div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/8-1.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/8-1.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+				</div>
+			</div>
+
+			<div class="content5">
+				<div class="caption-left"><a href="" name="5F"></a>
+					<div class="floor">5F</div>
+					<a href="#1" class="left-item">电脑数码</a>
+				</div>
+				<div class="caption-right">
+					<div class="caption-right-tab"><a href="#2" class="right-item">热门</a><div class="triangle triangle-top" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">大牌</a><div class=" triangle" ></div></div>
+					|
+					<div class="caption-right-tab"><a href="#2" class="right-item">名品</a><div class=" triangle" ></div></div>
+				</div>
+
+				<div class="block">
+					<div class="block-item">
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+						<div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div>
+					</div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+					<div class="block-item" style="display: none;"><div class="sale"><img src="img/floor/9.jpg" alt=""><p>匡威棒球开衫外套</p><a>$479</a></div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- link -->
+	<div class="link" id="link">
+		<div class="wrap claerfix">
+			<div class="link-content">
+				<div class="link-title">消费者保障</div>
+				<div class="link-item">保障范围</div>
+				<div class="link-item">退货退款流程</div>
+				<div class="link-item">服务中心</div>
+				<div class="link-item">更多特色服务</div>
+			</div>
+			<div class="link-content">
+				<div class="link-title">新手上路</div>
+				<div class="link-item">新手专区</div>
+				<div class="link-item">安全交易</div>
+				<div class="link-item">消费警示</div>
+				<div class="link-item">24小时在线帮助</div>
+				<div class="link-item">免费开店</div>
+			</div>
+			<div class="link-content">
+				<div class="link-title">付款方式</div>
+				<div class="link-item">快捷支付</div>
+				<div class="link-item">信用卡</div>
+				<div class="link-item">余额宝</div>
+				<div class="link-item">蚂蚁花呗</div>
+				<div class="link-item">货到付款</div>
+			</div>
+			<div class="link-content">
+				<div class="link-title">淘宝特色</div>
+				<div class="link-item">手机淘宝</div>
+				<div class="link-item">淘气值</div>
+				<div class="link-item">大众审评</div>
+				<div class="link-item">装逼指南</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- footer -->
+	<div class="footer" id="footer">
+		<div class="wrap claerfix">
+			<div class="code">
+				<span>关于淘宝</span>
+				<span>合作伙伴</span>
+				<span>营销中心</span>
+				<span>知识产权</span>
+				<span>廉正举报</span>
+				<span>联系客服</span>
+				<span>开放平台</span>
+				<span>诚征英才</span>
+				<span>联系我们</span>
+				<span>网站地图</span>
+				<span>法律声明</span>
+			</div>
+			<div class="author">
+				© 2003-2017 Taobao.com 版权所有
+				<br>
+				网络文化经营许可证：文网文[2010]040号|增值电信业务经营许可证：浙B2-20080224-1|信息网络传播视听节目许可证：1109364号
+			</div>
+		</div>
+	</div>
+	
+	<div class="nav-right">
+		<div class="nav-right-item">
+			<a href="#9" class="item-show"><img src="img/icon/13.png" alt=""></a>
+			<a href="#9" class="item-hide">会员</a>
+		</div>
+		<div class="nav-right-item">
+			<a href="#9" class="item-show"><img src="img/icon/14.png" alt=""></a>
+			<a href="#9" class="item-hide">购物</a>
+		</div>
+		<div class="nav-right-item">
+			<a href="#9" class="item-show"><img src="img/icon/15.png" alt=""></a>
+			<a href="#9" class="item-hide">收藏</a>
+		</div>
+		<div class="nav-right-item">
+			<a href="#9" class="item-show"><img src="img/icon/16.png" alt=""></a>
+			<a href="#9" class="item-hide">聊天</a>
+		</div>
+		<div class="nav-right-item">
+			<a href="#9" class="item-show"><img src="img/icon/17.png" alt=""></a>
+			<a href="#top" class="item-hide">顶部</a>
+		</div>
+	</div>
+
+	<!-- <a href="#" class="go-top"></a> -->
+	
+	<!-- 放在底部，页面加载完成后开始加载即可 -->
+	<script type="text/javascript" src="jQuery/ui.js"></script>
+</body>
+</html>
